@@ -1,0 +1,24 @@
+<?php
+
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('admin.index');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/profile', [ProfileController::class, 'AdminProfile'])->name('admin.profile');
+    Route::post('/profile/store', [ProfileController::class, 'ProfileStore'])->name('profile.store');
+    Route::post('/user/password/update', [ProfileController::class, 'PasswordUpdate'])->name('user.password.update');
+
+});
+
+require __DIR__.'/auth.php';
