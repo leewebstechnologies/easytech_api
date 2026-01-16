@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\GatewayController;
+use App\Http\Controllers\Backend\ServicesController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +30,38 @@ require __DIR__.'/auth.php';
 Route::middleware('auth')->group(function () {
    Route::controller(SliderController::class)->group(function() {
     Route::get('/all/slider', 'AllSlider')->name('all.slider');
+    Route::get('/add/slider', 'AddSlider')->name('add.slider');
+    Route::post('/store/slider', 'StoreSlider')->name('store.slider');
+    Route::get('/edit/slider/{id}', 'EditSlider')->name('edit.slider');
+    Route::post('/update/slider', 'UpdateSlider')->name('update.slider');
+    Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
+   });
+
+   Route::controller(ServicesController::class)->group(function() {
+    Route::get('/all/services', 'AllServices')->name('all.services');
+    Route::get('/add/services', 'AddServices')->name('add.services');
+    Route::post('/store/services', 'StoreServices')->name('store.services');
+    Route::get('/edit/services/{id}', 'EditServices')->name('edit.services');
+    Route::post('/update/services', 'UpdateServices')->name('update.services');
+    Route::get('/delete/services/{id}', 'DeleteServices')->name('delete.services');
+    Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
+   });
+
+    Route::controller(GatewayController::class)->group(function() {
+    Route::get('/gateway/one', 'GateWayOne')->name('gateway.one');
+    Route::post('/update/gateway/one', 'UpdateGateWayOne')->name('update.gateway.one');
+    Route::get('/gateway/two', 'GateWayTwo')->name('gateway.two');
+    Route::post('/update/gateway/two', 'UpdateGateWayTwo')->name('update.gateway.two');
+
+   });
+
+    Route::controller(TestimonialController::class)->group(function() {
+    Route::get('/all/testimonial', 'AllTestimonial')->name('all.testimonial');
+    Route::get('/add/testimonial', 'AddTestimonial')->name('add.testimonial');
+    Route::post('/store/testimonial', 'StoreTestimonial')->name('store.testimonial');
+    Route::get('/edit/testimonial/{id}', 'EditTestimonial')->name('edit.testimonial');
+    Route::post('/update/testimonial', 'UpdateTestimonial')->name('update.testimonial');
+    Route::get('/delete/testimonial/{id}', 'DeleteTestimonial')->name('delete.testimonial');
    });
 
 });

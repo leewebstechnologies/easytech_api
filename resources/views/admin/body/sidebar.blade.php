@@ -55,7 +55,7 @@
                                             <a href="{{ route('all.slider') }}" class="tp-link">All Slider</a>
                                         </li>
                                         <li>
-                                            <a href="auth-register.html" class="tp-link">Add Slider</a>
+                                            <a href="{{ route('add.slider') }}" class="tp-link">Add Slider</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -64,16 +64,52 @@
                             <li>
                                 <a href="#sidebarError" data-bs-toggle="collapse">
                                     <i data-feather="alert-octagon"></i>
-                                    <span> Error Pages </span>
+                                    <span> Manage Services </span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <div class="collapse" id="sidebarError">
                                     <ul class="nav-second-level">
                                         <li>
-                                            <a href="error-404.html" class="tp-link">Error 404</a>
+                                            <a href="{{ route('all.services') }}" class="tp-link">All Services</a>
                                         </li>
                                         <li>
-                                            <a href="error-500.html" class="tp-link">Error 500</a>
+                                            <a href="{{ route('add.services') }}" class="tp-link">Add Services</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                              <li>
+                                <a href="#gateway" data-bs-toggle="collapse">
+                                    <i data-feather="alert-octagon"></i>
+                                    <span> Manage Gateway </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="gateway">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="{{ route('gateway.one') }}" class="tp-link">Gateway One</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('gateway.two') }}" class="tp-link">Gateway Two</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                              <li>
+                                <a href="#testimonial" data-bs-toggle="collapse">
+                                    <i data-feather="alert-octagon"></i>
+                                    <span> Manage Testimonial </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="testimonial">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="{{ route('all.testimonial') }}" class="tp-link">All Testimonials</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('add.testimonial') }}" class="tp-link">Add Testimonial</a>
                                         </li>
                                     </ul>
                                 </div>
