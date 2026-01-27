@@ -11,7 +11,7 @@
 
                         <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
                             <div class="flex-grow-1">
-                                <h4 class="fs-18 fw-semibold m-0">Edit Services</h4>
+                                <h4 class="fs-18 fw-semibold m-0">Edit Blog Post</h4>
                             </div>
                         </div>
 
@@ -20,46 +20,46 @@
                             <div class="col-xl-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title mb-0">Edit Services</h5>
+                                        <h5 class="card-title mb-0">Edit Blog Post</h5>
                                     </div><!-- end card header -->
 
                                     <div class="card-body">
-                                        <form id="myForm" action="{{ route('update.services') }}" method="post" class="row g-3" enctype="multipart/form-data">
+                                        <form id="myForm" action="{{ route('update.blog.post') }}" method="post" class="row g-3" enctype="multipart/form-data">
                                             @csrf
-                                            <input type="hidden" name="id" value="{{ $services->id }}">
+                                            <input type="hidden" name="id" value="{{ $post->id }}" />
                                             <div class="col-md-6">
-                                                <label for="validationDefault01" class="form-label">Services Name</label>
-                                                <input type="text" name="services_name" value="{{ $services->services_name }}" class="form-control">
+                                                <label for="validationDefault01" class="form-label">Blog Category</label>
+                                               <select class="form-select" name="blogcategory_id" id="example-select">
+                                                 <option selected="">Selected Category</option>
+                                                @foreach ( $blogCategory as $cat)
+                                                    <option value="{{ $cat->id }}" {{ $cat->id == $post->blogcategory_id ? 'selected' : '' }}>{{ $cat->blog_category }}</option>
+                                                @endforeach
+                                               </select>
                                             </div>
 
                                             <div class="col-md-6">
-                                                <label for="validationDefault01" class="form-label">Icon</label>
-                                                <input type="text" name="icon" value="{{ $services->icon }}" class="form-control">
+                                                <label for="validationDefault01" class="form-label">Post Title</label>
+                                                <input type="text" name="post_title" value="{{ $post->post_title }}" class="form-control">
                                             </div>
 
                                             <div class="col-md-12">
-                                                <label for="validationDefault01" class="form-label">Services Short Description</label>
-                                                <textarea class="form-control" name="services_short" placeholder="Add Services Short Description">{{ $services->services_short }}</textarea>
-                                            </div>
-
-                                            <div class="col-md-12">
-                                                <label for="validationDefault01" class="form-label">Services Description</label>
+                                                <label for="validationDefault01" class="form-label">Blog Description</label>
                                                 <div>
                                                     <div id="quill-editor" style="height: 200px;"></div>
-                                                    <input type="hidden" name="services_desc" id="services_desc">
+                                                    <input type="hidden" name="long_description" id="long_description">
                                                     <div id="quill-content" style="display: none;">
-                                                        {!! $services->services_desc !!}
+                                                        {!! $post->long_description !!}
                                                     </div>
                                                </div>
                                             </div>
 
                                             <div class="col-md-6">
-                                                <label for="validationDefault01" class="form-label">Services Image</label>
+                                                <label for="validationDefault01" class="form-label">Blog Image</label>
                                                 <input type="file" name="image" class="form-control" id="image">
                                             </div>
 
                                             <div class="col-md-6">
-                                                 <img id="showImage" src="{{ asset($services->image) }}" src="{{ url('upload/no_image.jpg') }}" class="rounded-circle avatar-xxl img-thumbnail float-start" alt="image profile">
+                                                 <img id="showImage" src="{{ asset($post->image) }}" class="rounded-circle avatar-xxl img-thumbnail float-start" alt="image profile">
                                             </div>
 
                                             <div class="col-12">
@@ -85,19 +85,15 @@
             theme: 'snow'
         });
 
-        // Set initial content if available
+         // Set initial content if available
         var initialContent = document.getElementById('quill-content').innerHTML;
         if (initialContent) {
             quill.clipboard.dangerouslyPasteHTML(initialContent);
         }
 
-
-
-
-
         // On form submission, update the hidden input value with the editor content
         document.getElementById('myForm').onsubmit = function() {
-            document.getElementById('services_desc').value = quill.root.innerHTML;
+            document.getElementById('long_description').value = quill.root.innerHTML;
         };
     </script>
 

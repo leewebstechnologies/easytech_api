@@ -97,7 +97,7 @@
                                 </div>
                             </li>
 
-                              <li>
+                            <li>
                                 <a href="#testimonial" data-bs-toggle="collapse">
                                     <i data-feather="alert-octagon"></i>
                                     <span> Manage Testimonial </span>
@@ -114,6 +114,70 @@
                                     </ul>
                                 </div>
                             </li>
+
+                            <li>
+                                <a href="#blogCategory" data-bs-toggle="collapse">
+                                    <i data-feather="alert-octagon"></i>
+                                    <span>Blog Category </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="blogCategory">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="{{ route('blog.category') }}" class="tp-link">Blog Category</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="#blogPost" data-bs-toggle="collapse">
+                                    <i data-feather="alert-octagon"></i>
+                                    <span>Blog Post </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="blogPost">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="{{ route('all.blog.posts') }}" class="tp-link">All Blog Posts</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('add.blog.post') }}" class="tp-link">Add Blog Post</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="#siteSetting" data-bs-toggle="collapse">
+                                    <i data-feather="alert-octagon"></i>
+                                    <span>Site Setting </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="siteSetting">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="{{ route('site.setting') }}" class="tp-link">Site Setting</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="#about" data-bs-toggle="collapse">
+                                    <i data-feather="alert-octagon"></i>
+                                    <span>About</span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="about">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="{{ route('about') }}" class="tp-link">About</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
 
                             <li class="menu-title mt-2">General</li>
 

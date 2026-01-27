@@ -34,8 +34,8 @@ class TestimonialController extends Controller
 
         return redirect()->route('all.testimonial')->with($notification);
     }
-
     // End Method
+    
      public function EditTestimonial($id) {
         $testimonial = Testimonial::find($id);
         return view('backend.testimonial.edit_testimonial', compact('testimonial'));

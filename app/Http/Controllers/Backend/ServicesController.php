@@ -10,18 +10,17 @@ use Intervention\Image\Drivers\Gd\Driver;
 
 class ServicesController extends Controller
 {
-     public function AllServices() {
+    public function AllServices() {
         $services = Services::latest()->get();
         return view('backend.services.all_services', compact('services'));
     }
-
     // End Method
 
     public function AddServices() {
         return view('backend.services.add_services');
     }
 
-     public function StoreServices(Request $request) {
+    public function StoreServices(Request $request) {
         if ($request->file('image')) {
             $image = $request->file('image');
             $manager = new ImageManager(new Driver());
@@ -48,7 +47,6 @@ class ServicesController extends Controller
 
         return redirect()->route('all.services')->with($notification);
     }
-
     // End Method
 
       public function EditServices($id) {
@@ -58,7 +56,7 @@ class ServicesController extends Controller
 
     // End Method
 
-     public function UpdateServices(Request $request) {
+    public function UpdateServices(Request $request) {
         $services_id = $request->id;
         $services = Services::find($services_id);
 
@@ -112,8 +110,8 @@ class ServicesController extends Controller
 
 
     }
-
     // End Method
+
       public function DeleteServices($id) {
         $item = Services::find($id);
         $img = $item->image;
@@ -127,11 +125,6 @@ class ServicesController extends Controller
         );
 
         return redirect()->back()->with($notification);
-
-
-
     }
-
-
-
+    // End Method
 }

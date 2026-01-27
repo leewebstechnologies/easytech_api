@@ -15,9 +15,7 @@ class GatewayController extends Controller
         $gateone = Gatewayone::find(1);
         return view('backend.gateway.gateway_one', compact('gateone'));
     }
-
     // End Method
-
 
     public function UpdateGateWayOne(Request $request) {
         $gateone_id = $request->id;
@@ -69,17 +67,15 @@ class GatewayController extends Controller
 
 
     }
-
     // End Method
 
     public function GateWayTwo() {
         $gatetwo = GateWayTwo::find(1);
         return view('backend.gateway.gateway_two', compact('gatetwo'));
     }
-
     // End Method
 
-      public function UpdateGateWayTwo(Request $request) {
+    public function UpdateGateWayTwo(Request $request) {
         $gatetwo_id = $request->id;
         $gatetwo = GateWayTwo::find($gatetwo_id);
 
@@ -135,7 +131,6 @@ class GatewayController extends Controller
 
 
     }
-
     // End Method
 
 }
