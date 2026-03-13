@@ -44,10 +44,19 @@
                                                     <td>{{ Str::limit($item->description, 50); }}</td>
                                                     <td>{{ $item->link }}</td>
                                                     <td>
-                                                        <a href="{{ route('edit.slider', $item->id) }}"class="btn btn-success btn-sm">Edit</a>
-                                                        <a href="{{ route('delete.slider', $item->id) }}" class="btn btn-danger btn-sm" id="delete">Delete</a>
-                                                    </td>
-                                                </tr>
+                                                        <div class="d-flex gap-2">
+                                                        <a href="{{ route('edit.slider', $item->id) }}" class="btn btn-success btn-sm">
+                                                            Edit
+                                                        </a>
+
+                                                        <a href="{{ route('delete.slider', $item->id) }}" 
+                                                            class="btn btn-danger btn-sm" 
+                                                            id="delete">
+                                                            Delete
+                                                        </a>
+                                                        </div>
+                                                        </td>
+                                                    </tr>
 
                                                 @endforeach
                                             </tbody>

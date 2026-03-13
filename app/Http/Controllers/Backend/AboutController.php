@@ -73,5 +73,11 @@ class AboutController extends Controller
         }
     }
     // End Method
-    
+
+    // About Api Method
+    public function ApiAbout() {
+        $about = About::find(1);
+        return $about;
+    }
+
 }

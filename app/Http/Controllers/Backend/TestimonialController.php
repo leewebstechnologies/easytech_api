@@ -35,12 +35,11 @@ class TestimonialController extends Controller
         return redirect()->route('all.testimonial')->with($notification);
     }
     // End Method
-    
+
      public function EditTestimonial($id) {
         $testimonial = Testimonial::find($id);
         return view('backend.testimonial.edit_testimonial', compact('testimonial'));
     }
-
     // End Method
 
      public function UpdateTestimonial(Request $request) {
@@ -61,7 +60,6 @@ class TestimonialController extends Controller
 
         return redirect()->route('all.testimonial')->with($notification);
     }
-
     // End Method
 
      public function DeleteTestimonial($id) {
@@ -74,7 +72,14 @@ class TestimonialController extends Controller
 
         return redirect()->back()->with($notification);
     }
-
     // End Method
+
+    // Start Testimonial Api
+    public function ApiAllTestimonials() {
+        $testimonial = Testimonial::latest()->get();
+        return $testimonial;
+    }
+    // End Testimonial Api
+
 
 }

@@ -133,4 +133,18 @@ class GatewayController extends Controller
     }
     // End Method
 
+    // Start Gatewayone Api
+    public function ApiGatewayOne() {
+        $gatewayone = Gatewayone::find(1);
+        return $gatewayone;
+    }
+    // End Gatewayone Api
+
+    // Start Gatewaytwo Api
+    public function ApiGatewaytwo() {
+        $gatewaytwo = GateWaytwo::find(1);
+        return $gatewaytwo;
+    }
+    // End Gatewaytwo Api
+
 }

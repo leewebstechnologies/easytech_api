@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\GatewayController;
 use App\Http\Controllers\Backend\ServicesController;
 use App\Http\Controllers\Backend\SiteSettingController;
@@ -47,7 +48,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit/services/{id}', 'EditServices')->name('edit.services');
     Route::post('/update/services', 'UpdateServices')->name('update.services');
     Route::get('/delete/services/{id}', 'DeleteServices')->name('delete.services');
-    Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
    });
 
     Route::controller(GatewayController::class)->group(function() {
@@ -93,4 +93,9 @@ Route::middleware('auth')->group(function () {
         Route::post('/update/about', 'UpdateAbout')->name('update.about');
    });
 
+    Route::controller(ContactController::class)->group(function() {
+        Route::get('/contact', 'Contact')->name('contact');
+   });
+
 });
+

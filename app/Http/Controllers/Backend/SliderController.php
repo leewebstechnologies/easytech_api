@@ -14,11 +14,12 @@ class SliderController extends Controller
         $slider = Slider::latest()->get();
         return view('backend.slider.all_slider', compact('slider'));
     }
-
     // End Method
+
     public function AddSlider() {
         return view('backend.slider.add_slider');
     }
+    // End Method
 
     public function StoreSlider(Request $request) {
         if ($request->file('image')) {
@@ -42,62 +43,65 @@ class SliderController extends Controller
             'alert-type' => 'success'
         );
 
-
         return redirect()->route('all.slider')->with($notification);
     }
-
     // End Method
+
     public function EditSlider($id) {
         $slider = Slider::find($id);
         return view('backend.slider.edit_slider', compact('slider'));
     }
-
     // End Method
 
-    public function UpdateSlider(Request $request) {
-        $slider_id = $request->id;
-        $slider = Slider::find($slider_id);
+   public function UpdateSlider(Request $request) {
 
-        if ($request->file('image')) {
-            $image = $request->file('image');
-            $manager = new ImageManager(new Driver());
-            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            $img = $manager->read($image);
-            $img->resize(1124, 750)->save(public_path('upload/slider/'.$name_gen));
-            $save_url = 'upload/slider/'.$name_gen;
+    $slider_id = $request->id;
+    $slider = Slider::findOrFail($slider_id);
 
-            if (file_exists(public_path($slider->image))) {
-                @unlink(public_path($slider->image));
-            }
+    if ($request->file('image')) {
 
-             $slider->update([
-                'heading' => $request->heading,
-                'description' => $request->description,
-                'link' => $request->link,
-                'image' => $save_url,
-            ]);
+        $image = $request->file('image');
+        $manager = new ImageManager(new Driver());
+        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        $img = $manager->read($image);
+        $img->resize(1124, 750)->save(public_path('upload/slider/'.$name_gen));
+        $save_url = 'upload/slider/'.$name_gen;
 
-
-          $notification = array(
-            'message' => 'Slider Updated With Image Successfully!',
-            'alert-type' => 'success'
-        );
-
-        return redirect()->route('all.slider')->with($notification);
-        } else {
-
-             $notification = array(
-            'message' => 'Slider Updated Without Image Successfully!',
-            'alert-type' => 'success'
-        );
-
-        return redirect()->route('all.slider')->with($notification);
-
+        // delete old image safely
+        if ($slider->image && file_exists(public_path($slider->image))) {
+            unlink(public_path($slider->image));
         }
 
+        $slider->update([
+            'heading' => $request->heading,
+            'description' => $request->description,
+            'link' => $request->link,
+            'image' => $save_url,
+        ]);
 
+        $notification = [
+            'message' => 'Slider Updated With Image Successfully!',
+            'alert-type' => 'success'
+        ];
 
+    } else {
+
+        $slider->update([
+            'heading' => $request->heading,
+            'description' => $request->description,
+            'link' => $request->link,
+        ]);
+
+        $notification = [
+            'message' => 'Slider Updated Without Image Successfully!',
+            'alert-type' => 'success'
+        ];
     }
+
+    return redirect()->route('all.slider')->with($notification);
+}
+
+    // End Method
 
     public function DeleteSlider($id) {
         $item = Slider::find($id);
@@ -112,15 +116,14 @@ class SliderController extends Controller
         );
 
         return redirect()->back()->with($notification);
-
-
-
     }
+    // End Method
 
-
-
-
-
-
+    // Start Slider Api
+    public function ApiAllSliders() {
+    $slider = Slider::latest()->get();
+     return $slider;
+    }
+    // End Slider Api
 
 }

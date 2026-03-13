@@ -31,7 +31,7 @@ class ServicesController extends Controller
 
             Services::create([
                 'services_name' => $request->services_name,
-                'slug' => strtolower(str_replace('', '-', $request->services_name)),
+                'slug' => strtolower(str_replace(' ', '-', $request->services_name)),
                 'services_short' => $request->services_short,
                 'services_desc' => $request->services_desc,
                 'icon' => $request->icon,
@@ -53,7 +53,6 @@ class ServicesController extends Controller
         $services = Services::find($id);
         return view('backend.services.edit_services', compact('services'));
     }
-
     // End Method
 
     public function UpdateServices(Request $request) {
@@ -74,7 +73,7 @@ class ServicesController extends Controller
 
              $services->update([
                 'services_name' => $request->services_name,
-                'slug' => strtolower(str_replace('', '-', $request->services_name)),
+                'slug' => strtolower(str_replace(' ', '-', $request->services_name)),
                 'services_short' => $request->services_short,
                 'services_desc' => $request->services_desc,
                 'icon' => $request->icon,
@@ -91,7 +90,7 @@ class ServicesController extends Controller
         } else {
             $services->update([
                 'services_name' => $request->services_name,
-                'slug' => strtolower(str_replace('', '-', $request->services_name)),
+                'slug' => strtolower(str_replace(' ', '-', $request->services_name)),
                 'services_short' => $request->services_short,
                 'services_desc' => $request->services_desc,
                 'icon' => $request->icon,
@@ -106,9 +105,6 @@ class ServicesController extends Controller
         return redirect()->route('all.services')->with($notification);
 
         }
-
-
-
     }
     // End Method
 
@@ -127,4 +123,21 @@ class ServicesController extends Controller
         return redirect()->back()->with($notification);
     }
     // End Method
+
+    // Start Services Api
+    public function ApiAllServices() {
+        $services = Services::latest()->get();
+        return $services;
+    }
+
+    public function getServicesBySlug($slug) {
+        $services = Services::where('slug', $slug)->first();
+        if (!$services) {
+            return response()->json(['error' => 'Services not found!'], 404);
+        } else {
+            return response()->json($services);
+        }
+
+    }
+    // End Services Api
 }
